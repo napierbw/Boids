@@ -12,7 +12,6 @@ class Boid {
     this.acceleration = createVector();
     this.maxForce = 1;
     this.maxSpeed = 4;
-    this.perceptionRadius = 50;
   }
 
   edges() {
@@ -29,7 +28,7 @@ class Boid {
   }
 
   align(boids) {
-    let perceptionRadius = this.perceptionRadius;
+    let perceptionRadius = perceptionSlider.value();
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -49,7 +48,7 @@ class Boid {
   }
 
   separation(boids) {
-    let perceptionRadius = this.perceptionRadius;
+    let perceptionRadius = perceptionSlider.value();
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -71,7 +70,7 @@ class Boid {
   }
 
   cohesion(boids) {
-    let perceptionRadius = this.perceptionRadius;
+    let perceptionRadius = perceptionSlider.value();
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -95,9 +94,7 @@ class Boid {
     let alignment = this.align(boids);
     let cohesion = this.cohesion(boids);
     let separation = this.separation(boids);
-    //let perception = this.perceptionRadius(boids);
 
-    //perception.mult(perceptionSlider.value());
     alignment.mult(alignSlider.value());
     cohesion.mult(cohesionSlider.value());
     separation.mult(separationSlider.value());
@@ -105,7 +102,6 @@ class Boid {
     this.acceleration.add(alignment);
     this.acceleration.add(cohesion);
     this.acceleration.add(separation);
-    //this.perceptionRadius = perception;
   }
 
   update() {
@@ -113,7 +109,6 @@ class Boid {
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.maxSpeed);
     this.acceleration.mult(0);
-    //this.perceptionRadius = perceptionSlider.value();
   }
 
   show() {
