@@ -112,8 +112,16 @@ class Boid {
   }
 
   show() {
-    strokeWeight(8);
-    stroke(255);
-    point(this.position.x, this.position.y);
+    fill(127, 127);
+    stroke(200);
+    ellipse(this.position.x, this.position.y, 16, 16);
+  }
+
+  // Wraparound
+  borders() {
+    if (this.position.x < -this.r) this.position.x = width + this.r;
+    if (this.position.y < -this.r) this.position.y = height + this.r;
+    if (this.position.x > width + this.r) this.position.x = -this.r;
+    if (this.position.y > height + this.r) this.position.y = -this.r;
   }
 }

@@ -34,5 +34,6 @@ function draw() {
     boid.flock(flock);
     boid.update();
     boid.show();
+    boid.borders();
   }
 }
